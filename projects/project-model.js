@@ -42,5 +42,7 @@ function addTask(task, project_id){
 };
 
 function getAllTasks(){
-    return db('tasks');
+    return db.select('projects.Name', 'projects.description', '*')
+        .from('tasks')
+        .join('projects', 'projects.id', '=', 'tasks.project_id')
 }
