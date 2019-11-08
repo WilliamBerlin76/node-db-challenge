@@ -87,4 +87,23 @@ router.post('/projects/:id/tasks', (req, res) => {
         })
 });
 
+router.get('/tasks', (req, res) => {
+    Projects.getAllTasks()
+        .then(tasks => {
+            let arr = [];
+            tasks.map(task => {
+                if (task.completed === 0 || task.completed === null){
+                    return arr.push({...task, completed: false})
+                } else {
+                    return arr.push({...task, completed: true})
+                }
+            })
+            res.status(200).json(arr)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({error: 'could not get all tasks'})
+        })
+})
+
 module.exports = router;
