@@ -5,7 +5,7 @@ exports.up = function(knex) {
         tbl.increments();
         tbl.string('Name', 225).notNullable();
         tbl.string('description', 225);
-        tbl.boolean('completed').notNullable().defaultTo(false);
+        tbl.boolean('completed').defaultTo(false);
     })
 };
 
